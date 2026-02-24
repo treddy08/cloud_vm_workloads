@@ -10,10 +10,10 @@
       spec:
         host: >-
           {{
-            (route.host | default(route.name) ~ '.' ~ guid ~ '.' ~ sandbox_openshift_apps_domain)
+            (route.host | default(route.name) ~ '.' ~ guid ~ '.' ~ openshift_cluster_ingress_domain)
             if (openshift_cnv_legacy_routes | default(false) and route.legacy | default(true)) or route.legacy | default(false)
             else
-            (route.host | default(route.name) ~ '-' ~ guid ~ '.' ~ sandbox_openshift_apps_domain)
+            (route.host | default(route.name) ~ '-' ~ guid ~ '.' ~ openshift_cluster_ingress_domain)
           }}
         port:
           targetPort: "{{ route.targetPort }}"
@@ -63,10 +63,10 @@
       spec:
         host: >-
           {{
-            (route.host | default(route.name) ~ '.' ~ guid ~ '.' ~ sandbox_openshift_apps_domain)
+            (route.host | default(route.name) ~ '.' ~ guid ~ '.' ~ openshift_cluster_ingress_domain)
             if openshift_cnv_legacy_routes | default(false)
             else
-            (route.host | default(route.name) ~ '-' ~ guid ~ '.' ~ sandbox_openshift_apps_domain)
+            (route.host | default(route.name) ~ '-' ~ guid ~ '.' ~ openshift_cluster_ingress_domain)
           }}
         path: "{{ route.path|default('/') }}"
         port:
